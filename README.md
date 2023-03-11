@@ -20,3 +20,9 @@ $env:GH_OWNER="play-microservice"
 $env:GH_PAT="[GITHUB ACCESS TOKEN HERE]"
 docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.identity:$version .
 ```
+
+## Run the docker image
+```powershell
+$adminPass="[ADMIN PASSWORD HERE]"
+docker run -it --rm -p 5002:5002 --name identity -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq -e IdentitySettings__AdminUserPassword=$adminPass --network playinfra_default play.identity:$version
+```
