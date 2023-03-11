@@ -5,6 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>60c388f8-d5df-4821-975b-3fd955aaa8bd</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+    <DockerfileFile>..\..\Dockerfile</DockerfileFile>   
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +15,7 @@
     <PackageReference Include="Duende.IdentityServer" Version="6.2.3" />
     <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="6.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.4" />
     <PackageReference Include="Play.Common" Version="1.0.6" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
