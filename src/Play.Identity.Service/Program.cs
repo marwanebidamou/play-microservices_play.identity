@@ -1,6 +1,4 @@
 using GreenPipes;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
@@ -10,7 +8,6 @@ using Play.Identity.Service.Entities;
 using Play.Identity.Service.Exceptions;
 using Play.Identity.Service.HostedServices;
 using Play.Identity.Service.Settings;
-using System.Configuration;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,7 +29,7 @@ builder.Services.Configure<IdentitySettings>(builder.Configuration.GetSection(na
         serviceSettings.ServiceName
     );
 
-builder.Services.AddMassTrannsitWithRabbitMq(retryConfigurator =>
+builder.Services.AddMassTrannsitWithMessageBroker(builder.Configuration,retryConfigurator =>
 {
     retryConfigurator.Interval(3, TimeSpan.FromSeconds(5));
     retryConfigurator.Ignore(typeof(UnknownUserException),typeof(UnsufficientFundsException));
