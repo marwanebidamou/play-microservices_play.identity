@@ -3,7 +3,7 @@ Play Economy Identity microservice.
 
 ## Create and publish package
 ```powershell
-$version="1.0.2"
+$version="1.0.3"
 $owner="play-microservice"
 $gh_pat="[GITHUB ACCESS TOKEN HERE]"
 $nuget_src_name="Play Github"
@@ -22,7 +22,14 @@ docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.identity:$version .
 ```
 
 ## Run the docker image
+### local version
 ```powershell
 $adminPass="[ADMIN PASSWORD HERE]"
 docker run -it --rm -p 5002:5002 --name identity -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq -e IdentitySettings__AdminUserPassword=$adminPass --network playinfra_default play.identity:$version
+```
+### azure version
+```powershell
+$adminPass="[ADMIN PASSWORD HERE]"
+$cosmosDbConnString="[CONN STRING HERE]"
+docker run -it --rm -p 5002:5002 --name identity -e MongoDbSettings__ConnectionString=$cosmosDbConnString -e RabbitMQSettings__Host=rabbitmq -e IdentitySettings__AdminUserPassword=$adminPass --network playinfra_default play.identity:$version
 ```
