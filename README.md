@@ -42,3 +42,14 @@ az acr login --name $acrname
 docker tag play.identity:$version "$acrname.azurecr.io/play.identity:$version"
 docker push "$acrname.azurecr.io/play.identity:$version"
 ```
+
+## Create the Kubernetes namespace
+```powershell
+$namespace="identity"
+kubectl create namespace $namespace
+```
+
+## Create the Kubernetes secrets
+```powershell
+kubectl create secret generic identity-secrets --from-literal=cosmosdb-connectionstring=$cosmosDbConnString --from-literal=servicebus-connectionstring=$serviceBusConnString --from-literal=admin-password=$adminPass -n $namespace
+```
