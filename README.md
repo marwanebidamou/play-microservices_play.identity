@@ -68,4 +68,7 @@ kubectl logs identity-deployment-xxxxx -n $namespace
 #to get pod description
  kubectl describe pod identity-deployment-xxxx -n $namespace
 kubectl
+
+#to list services
+kubectl get services -n $namespace
 ```
